@@ -2,7 +2,7 @@
 
 /* global window, document */
 
-(function(window, $) {
+window.FeedbackWidget = (function(window, $) {
   function init(target) {
     target = target || document.body;
     var $form = $('<form>' +
