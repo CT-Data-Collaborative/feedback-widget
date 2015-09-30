@@ -2,17 +2,23 @@
 
 /* global window, document */
 
-(function(window, $) {
+window.FeedbackWidget = (function(window, $) {
   function init(target) {
-    target = target || document.body;
     var $form = $('<form>' +
       '<textarea name="comment"></textarea>' +
-    '</form>').appendTo(target);
+    '</form>');
+
     $form.on('submit', function(e) {
       e.preventDefault();
       sendFeedback({
         comment: $form.find('[name=["comment"]').val()
       });
+    });
+
+    // script may be loaded from the <head>, so wait for the page to be fully parsed
+    $(document).on('ready', function() {
+      target = target || document.body;
+      $form.appendTo(target);
     });
   }
 
