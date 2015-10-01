@@ -3,22 +3,18 @@
 /* global window, document, require */
 
 var $ = require('jquery');
-  
-var template = '<form>'
-  +  '<label for="feedback-happy-button" >How do you feel?</label>'
-  +  '<button id="feedback-happy-button" value="happy">☺</button>'
-  +  '<button id="feedback-sad-button" value="unhappy">☹</button>'
-  +'</form>';
-  
+
+var template = require('html!./template.html');
+
 var css = {
-  position : 'fixed',
-  bottom : 0,
+  position: 'fixed',
+  bottom: 0,
   right: 0
 };
 
 var $form = $(template).css(css);
 
-$form.find('button').click(function(){
+$form.find('button').click(function() {
   var value = $(this).val();
   sendFeedback(value);
 });
@@ -32,7 +28,7 @@ function init(target) {
   });
 }
 
-function sendFeedback(upvote){
+function sendFeedback(upvote) {
 
   var data = {
     url: window.location.url,
@@ -43,7 +39,7 @@ function sendFeedback(upvote){
   $.ajax({
     method: 'POST',
     url: '',
-    data: data 
+    data: data
   }).done(function(resp) {
     console.log('submitted feedback');
   }).fail(function() {
