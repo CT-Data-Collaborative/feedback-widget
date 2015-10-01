@@ -22,11 +22,12 @@ FeedbackWidget.init(element);
 
 ## Development
 
+### API
+
 This repository also includes an API for collecting the data.
 
-1. Install the dependencies
+1. Install the dependencies.
     * Python
-    * VirtualEnv (recommended)
     * PostgreSQL
 1. Run:
 
@@ -35,4 +36,15 @@ This repository also includes an API for collecting the data.
     python app.py
     ```
 
-1. Open `index.html` in your browser.
+### Widget
+
+1. Make changes to [`widget.js`](widget.js).
+1. Install the dependencies.
+    * Node
+1. Run:
+
+    ```bash
+    npm run build
+    ```
+
+The new build will be placed in `widget.dist.js`. Open `index.html` in your browser to test it.
