@@ -33,7 +33,7 @@ function sendFeedback(upvote) {
   var data = {
     url: window.location.url,
     referer: document.referrer,
-    upvote: value
+    upvote: upvote
   };
 
   $.ajax({
