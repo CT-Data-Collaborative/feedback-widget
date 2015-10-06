@@ -9,7 +9,7 @@ To add to your site, add the following to your `<head>`:
 ```html
 <script src="widget.js"></script>
 <script>
-  FeedbackWidget.init();
+  new FeedbackWidget(url);
 </script>
 ```
 
@@ -17,7 +17,7 @@ You can optionally pass in a target element where you want the widget to be adde
 
 ```javascript
 var element = document.getElementById('...'); // or whatever
-FeedbackWidget.init(element);
+new FeedbackWidget.init(url, element);
 ```
 
 ## Development
