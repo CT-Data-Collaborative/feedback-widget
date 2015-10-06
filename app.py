@@ -2,6 +2,7 @@ import datetime
 
 from flask import Flask, request, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.cors import CORS
 
 import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql import JSON
@@ -12,6 +13,7 @@ from webargs.flaskparser import use_kwargs
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///feedback'
 db = SQLAlchemy(app)
+cors = CORS(app)
 
 class Feedback(db.Model):
 
@@ -28,9 +30,9 @@ class Feedback(db.Model):
 @app.route('/feedback/', methods=['POST'])
 @use_kwargs({
     'url': fields.Url(required=True),
-    'referer': fields.Url(missing=None, allow_none=True),
-    'upvote': fields.Boolean(missing=None, allow_none=True),
-    'comment': fields.Str(missing=None, allow_none=True),
+    'referer': fields.Url(missing=None),
+    'upvote': fields.Boolean(missing=None),
+    'comment': fields.Str(missing=None),
 })
 def submit_feedback(**kwargs):
     kwargs.update({
