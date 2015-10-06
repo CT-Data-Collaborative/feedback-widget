@@ -3,10 +3,11 @@
 /* global window, document, require */
 
 var $ = require('jquery');
-
 var template = require('html!./template.html');
+require('web-design-standards/css/main.css');
 
 var css = {
+  'text-align': 'center',
   position: 'fixed',
   bottom: 0,
   right: 0
@@ -14,7 +15,7 @@ var css = {
 
 var $form = $(template).css(css);
 
-$form.find('button').click(function() {
+$form.find('button[value]').click(function() {
   var value = $(this).val();
   sendFeedback(value);
 });
