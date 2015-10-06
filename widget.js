@@ -13,41 +13,46 @@ var css = {
   right: 0
 };
 
-var $form = $(template).css(css);
-
-$form.find('button[value]').click(function() {
-  var value = $(this).val();
-  sendFeedback(value);
-});
-
-function init(target) {
-
-  // script may be loaded from the <head>, so wait for the page to be fully parsed
-  $(document).on('ready', function() {
-    target = target || document.body;
-    $form.appendTo(target);
-  });
+function FeedbackWidget(url, target) {
+  this.url = url;
+  this.target = target;
+  $(document).ready(this.init.bind(this));
 }
 
-function sendFeedback(upvote) {
+FeedbackWidget.prototype.init = function () {
+  var $form = $(template).css(css);
+  $form.appendTo(this.target || document.body);
+  $form.on('click', 'button[value]', this.handleClick.bind(this));
+};
 
+FeedbackWidget.prototype.handleClick = function(e) {
+  var value = $(e.target).val();
+  this.submit(value);
+};
+
+FeedbackWidget.prototype.submit = function(upvote) {
   var data = {
-    url: window.location.url,
-    referer: document.referrer,
+    url: window.location.href,
+    referer: document.referrer || null,
     upvote: upvote
   };
 
-  $.ajax({
+  var promise = $.ajax({
     method: 'POST',
-    url: '',
-    data: data
-  }).done(function(resp) {
-    console.log('submitted feedback');
-  }).fail(function() {
-    console.log('error submitting feedback');
+    url: this.url,
+    data: JSON.stringify(data),
+    contentType: 'application/json'
   });
-}
-
-window.FeedbackWidget = {
-  init: init
+  promise.done(this.handleSuccess.bind(this));
+  promise.fail(this.handleError.bind(this));
 };
+
+FeedbackWidget.prototype.handleSuccess = function(response) {
+  console.log('Submitted feedback');
+};
+
+FeedbackWidget.prototype.handleError = function() {
+  console.log('Error submitting feedback');
+};
+
+window.FeedbackWidget = FeedbackWidget;
