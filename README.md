@@ -1,6 +1,8 @@
 # Feedback Widget
 
-An experimental widget to add feedback buttons to your page.
+This website feedback widget opens a new GitHub issue with the user's feedback, current URL, and user agent info (browser, OS, etc). Once the user submits feedback, they are shown the URL for the new GitHub issue.
+
+This is currently live on [beta.FEC.gov](https://beta.fec.gov) (see the bottom right corner).
 
 ## Usage
 
