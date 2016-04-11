@@ -1,8 +1,6 @@
-# Feedback Widget
+# Feedback widget
 
-This website feedback widget opens a new GitHub issue with the user's feedback, current URL, and user agent info (browser, OS, etc). Once the user submits feedback, they are shown the URL for the new GitHub issue.
-
-This is currently live on [beta.FEC.gov](https://beta.fec.gov) (see the bottom right corner).
+This was a quick experiment in prototyping a simple website feedback form ("How was your experience? [Good / Bad]"). See [this repository's issues](https://github.com/18F/feedback-widget/issues) for some discussion of this idea and a few examples of feedback widgets on government websites (including issues [#2](https://github.com/18F/feedback-widget/issues/2) and [#6](https://github.com/18F/feedback-widget/issues/6)). We're not planning to continue working on this particular prototype, but you're welcome to learn from what we've posted!
 
 ## Usage
 
