@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:9.5
+    expose:
+      - "5432"
+
+  web:
+  #  restart: always
+    build: ./web
+    expose:
+      - "8000"
+#    ports:
+#      - "5000:8000"
+    volumes:
+      - /usr/src/app/static
+    links:
+      - db:db
+    env_file: .env
+    command: /usr/local/bin/gunicorn -w 2 -b :8000 runserver:app
+
+  nginx:
+  #  restart: always
+    build: ./nginx/
+    networks:
+      - default
+    ports:
+      - "5000:5000"
+    volumes:
+      - /www/static
+    volumes_from:
+      - web
+    links:
+      - web:web

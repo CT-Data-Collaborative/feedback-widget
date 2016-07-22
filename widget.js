@@ -4,7 +4,7 @@
 
 var $ = require('jquery');
 var template = require('html!./template.html');
-require('web-design-standards/css/main.css');
+// require('web-design-standards/');
 
 var css = {
   'text-align': 'center',
